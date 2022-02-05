@@ -84,15 +84,15 @@ namespace FFImageLoading
         }
 
         protected override void SetTaskForTarget(IImageLoaderTask currentTask)
-        {
-            var targetView = currentTask?.Target?.TargetControl;
-
-            if (!(targetView is Android.Views.View))
-                return;
-
+        { 
             lock (_viewsReferences)
             {
-                if (_viewsReferences.TryGetValue(targetView, out var existingTask))
+				var targetView = currentTask?.Target?.TargetControl;
+
+				if (!(targetView is Android.Views.View))
+					return;
+
+				if (_viewsReferences.TryGetValue(targetView, out var existingTask))
                 {
                     try
                     {
